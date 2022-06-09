@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="text-right">
+    <a asp-controller="Product" asp-action="Create" class="btn btn-primary">New product</a>
+</div>
+
+<<div class="card-group">
+
+   
+    @foreach (var product in Model)
+    {
+        //var photoPath = "~/images/" + (product.PictureUrl ?? "noimage.jpg");
+        <div class="card" style="min-width: 20rem; max-width: 31%;">
+            <div class="card-header">
+                <h5><b>Name : </b> @product.Name</h5>
+                <h5><b>Price : </b>@product.Price</h5>
+            </div>
+            <center>
+                <img src=@product.PictureUrl height="100" width="200" />
+            </center>
+            <div class="card-footer text-center">
+                <a asp-controller="Product" asp-action="Details" asp-route-id="@product.Id"
+                   class="btn btn-warning m-1">View</a>
+                <a asp-action="Edit" asp-controller="Product" class="btn btn-primary m-1" asp-route-id="@product.Id">Edit</a>
+                <a asp-action="Delete" asp-controller="Product" class="btn btn-danger m-1" asp-route-id="@product.Id">Delete</a>
+            </div>
+        </div>
+    }
+</div>
